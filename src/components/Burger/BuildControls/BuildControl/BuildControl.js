@@ -1,6 +1,6 @@
 import React from 'react';
 
-import classes from './BurgerControl.css';
+import classes from './BuildControl.css';
 
 const burgerControl = (props) => (
   // label => ingredientLabel
