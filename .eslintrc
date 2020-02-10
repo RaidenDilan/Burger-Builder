@@ -1,15 +1,28 @@
 {
   "parser": "babel-eslint",
+  parserOptions: {
+    sourceType: "module",
+    allowImportExportEverywhere: false,
+    ecmaFeatures: {
+      globalReturn: false,
+    }
+  },
+  # babelOptions: {
+  #   configFile: "path/to/config.js",
+  # },
   "plugins": [
     "react"
   ],
+  "env": {
+    es6: true
+  },
   "rules": {
     "jsx-quotes": ["error", "prefer-double"],
     "space-in-parens": [ 0, "always" ],
     "template-curly-spacing": [ 2, "always" ],
-    "array-bracket-spacing": [ 2, "always" ],
+    # "array-bracket-spacing": [ 2, "always" ],
     "object-curly-spacing": [ 2, "always" ],
-    "computed-property-spacing": [ 2, "always" ],
+    # "computed-property-spacing": [ 2, "always" ],
     "no-multiple-empty-lines": [ 2, { "max": 1, "maxEOF": 0, "maxBOF": 0 } ],
     "quotes": [ 1, "single", "avoid-escape" ],
     "no-use-before-define": [ 2, { "functions": false } ],
@@ -21,7 +34,7 @@
     "react/jsx-indent": [ 1, 2 ],
     # "react/jsx-max-props-per-line": [1, { "when": "always" }],
     # "react/prop-types": [ 1 ],
-    "react/no-array-index-key": [ 1 ],
+    # "react/no-array-index-key": [ 1 ],
     'class-methods-use-this': ['error', {
       exceptMethods: [
         'render',
