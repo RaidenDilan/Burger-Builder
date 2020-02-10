@@ -14,8 +14,13 @@
     "react"
   ],
   "env": {
+    browser: true,
+    node: true,
     es6: true
   },
+  # "globals": {
+  #   "console": true
+  # },
   "rules": {
     "jsx-quotes": ["error", "prefer-double"],
     "space-in-parens": [ 0, "always" ],
@@ -55,6 +60,7 @@
     "no-return-assign": [ 1 ],
     "no-param-reassign": [ 1 ],
     "no-shadow": [ 1 ],
+    "no-console": "off",
     "camelcase": [ 1 ],
     "no-underscore-dangle" : [0, "always"],
   }
