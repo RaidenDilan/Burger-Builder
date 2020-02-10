@@ -2,7 +2,7 @@ import React from 'react';
 
 import classes from './BurgerIngredient.css';
 
-const BurgerIngredient = (props) => {
+const burgerIngredient = (props) => {
   let ingredient = null;
 
   switch(props.type) {
@@ -36,4 +36,4 @@ const BurgerIngredient = (props) => {
   }
 };
 
-export default BurgerIngredient;
+export default burgerIngredient;
