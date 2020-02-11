@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Aux from '../../../hoc/Aux';
+import Button from '../../UI/Button/Button';
 
 const orderSummary = (props) => {
   // We're expecting to get back an Object format of the ingredients prop.
@@ -21,8 +22,8 @@ const orderSummary = (props) => {
         { ingredientSummary }
       </ul>
       <p>Continue to Checkout?</p>
-      <button>CANCEL</button>
-      <button>CONTINUE</button>
+      <Button clicked={ props.purchaseCanceled } btnType="Danger">CANCEL</Button>
+      <Button clicked={ props.purchasedContinued } btnType="Success">CONTINUE</Button>
     </Aux>
   );
 };
