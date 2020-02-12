@@ -12,7 +12,7 @@ const INGREDIENT_PRICES = {
   cheese: 0.4,
   meat: 1.3,
   bacon: 0.7
-}
+};
 
 class BurgerBuilder extends Component {
   // constructor(props) {
@@ -41,7 +41,7 @@ class BurgerBuilder extends Component {
         return sum + el;
       }, 0);
 
-      this.setState({ purchasable: sum > 0 })
+    this.setState({ purchasable: sum > 0 });
   };
 
   purchaseHandler = () => {
@@ -109,7 +109,7 @@ class BurgerBuilder extends Component {
             purchaseCanceled={ this.purchasedCancelHandler }
             purchasedContinued={ this.purchasedContinueHandler }
             price={ this.state.totalPrice.toFixed(2) }
-            />
+          />
         </Modal>
         <Burger ingredients={ this.state.ingredients } />
         <BuildControls
@@ -119,7 +119,7 @@ class BurgerBuilder extends Component {
           purchasable={ this.state.purchasable }
           ordered={ this.purchaseHandler }
           price={ this.state.totalPrice }
-          />
+        />
       </Aux>
     );
   }

@@ -1,12 +1,25 @@
 {
-  "parser": "babel-eslint",
-  "env": {
-    "browser": true,
-    "es6": true
+  "settings": {
+    "react": {
+      "createClass": "createReactClass",
+      "pragma": "React",
+      "version": "detect",
+      "flowVersion": "0.53"
+    },
+    "propWrapperFunctions": [
+      "forbidExtraProps",
+      {"property": "freeze", "object": "Object"},
+      {"property": "myFavoriteWrapper"}
+    ],
+    "linkComponents": [
+      "Hyperlink",
+      {"name": "Link", "linkAttribute": "to"}
+    ]
   },
   "extends": [
     "plugin:react/recommended"
   ],
+  "parser": "babel-eslint",
   "parserOptions": {
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
@@ -14,9 +27,38 @@
     },
     "sourceType": "module"
   },
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  # "globals": [
+  #   "describe",
+  #   "test",
+  #   "it",
+  #   "jest",
+  #   "beforeAll",
+  #   "beforeEach",
+  #   "afterAll",
+  #   "afterEach",
+  #   "expect",
+  #   "fetch",
+  #   "navigator",
+  #   "__DEV__",
+  #   "XMLHttpRequest",
+  #   "FormData",
+  #   "React$Element",
+  #   "If",
+  #   "Choose",
+  #   "When",
+  #   "Otherwise",
+  #   "For",
+  #   "With"
+  # ],
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "indent": [ "error", 2],
+    "indent": [ "error", 2, { "SwitchCase": 1, "VariableDeclarator": 1, "MemberExpression": 1}],
+    "react/jsx-indent": ["error", 2],
+    "react/jsx-indent-props": ["error", 2],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
@@ -35,6 +77,8 @@
     # "react/prefer-es6-class": 0,
     # "react/jsx-filename-extension": 0,
     "react/jsx-curly-spacing": [ 2, { "when": "always", "attributes": { "allowMultiline": false }, "children": true }],
+    # "react/jsx-space-before-closing": "error",
+    "react/jsx-tag-spacing": ["error", { "beforeSelfClosing": "always" }],
     # "react/jsx-indent": [ 1, 2 ],
     # # "react/jsx-max-props-per-line": [1, { "when": "always" }],
     "react/prop-types": [ 0 ],
@@ -54,7 +98,8 @@
     #     'componentWillUnmount',
     #   ],
     # }],
-    # "no-undef": [ 1 ],
+    # "no-undef": ["error"],
+    # "react/jsx-no-undef": [2, { "allowGlobals": true }],
     # "no-unused-vars": "on",
     "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
     # "no-case-declarations": [ 1 ],
