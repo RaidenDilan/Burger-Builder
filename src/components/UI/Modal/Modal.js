@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import classes from './Modal.css';
-import Aux from '../../../hoc/Aux';
+import Aux from '../../../hoc/Aux/Aux';
 import Backdrop from '../Backdrop/Backdrop';
 
-// I'm not using Pure Component because it would run more checks than I want to and right now I wanna keep it that way.
+// We're not using Pure Component because it would run more checks than we want to and right now we wanna keep it that way.
 class Modal extends Component {
   shouldComponentUpdate(nextProps, nextState) {
     return nextProps.show !== this.props.show;

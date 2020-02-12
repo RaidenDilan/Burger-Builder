@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import Aux from '../../../hoc/Aux';
+import Aux from '../../../hoc/Aux/Aux';
 import Button from '../../UI/Button/Button';
 
 class OrderSummary extends Component {
-  // this could be a functional/stateless component, doesn't have to be a class based/stateful component
+  // This could be a functional/stateless component, doesn't have to be a class based/stateful component
   componentDidUpdate() {
     console.log('[OrderSummary.js] componentDidUpdate');
   }
