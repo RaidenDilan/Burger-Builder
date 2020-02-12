@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import classes from './Modal.css';
 import Aux from '../../../hoc/Aux';
@@ -6,7 +7,7 @@ import Backdrop from '../Backdrop/Backdrop';
 
 const modal = (props) => (
   <Aux>
-    <Backdrop show={ props.show } clicked={ props.modalClosed }/>
+    <Backdrop show={ props.show } clicked={ props.modalClosed } />
     <div
       className={ classes.Modal }
       style={ {
@@ -18,5 +19,14 @@ const modal = (props) => (
     </div>
   </Aux>
 );
+
+modal.propTypes = {
+  show: PropTypes.bool.isRequired,
+  modalClosed: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node
+  ]).isRequired
+};
 
 export default modal;
