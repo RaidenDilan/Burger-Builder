@@ -5,6 +5,7 @@ import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import axios from '../../axios-orders';
 
 // Typpical global constants are written in ALL CAPS
@@ -30,7 +31,8 @@ class BurgerBuilder extends Component {
     },
     totalPrice: 4,
     purchasable: false,
-    purchasing: false
+    purchasing: false,
+    loading: false
   };
 
   updatePurchaseState(ingredients) {
@@ -93,6 +95,8 @@ class BurgerBuilder extends Component {
 
   purchasedContinueHandler = () => {
     // alert('You continued');
+    this.setState({ loading: true });
+
     const order = {
       ingredients: this.state.ingredients,
       price: this.state.totalPrice,
@@ -110,8 +114,14 @@ class BurgerBuilder extends Component {
 
     axios
       .post('/orders.json', order)
-      .then(response => console.log(response))
-      .catch(err => console.log(err));
+      .then(response => {
+        // console.log(response);
+        this.setState({ loading: false, purchasing: false });
+      })
+      .catch(err => {
+        this.setState({ loading: false, purchasing: false });
+        // console.log(err);
+      });
   };
 
   render() {
@@ -124,18 +134,22 @@ class BurgerBuilder extends Component {
       // { salad: true, meat: false, ... }
     }
 
+    let orderSummary = <OrderSummary
+      ingredients={ this.state.ingredients }
+      purchaseCanceled={ this.purchasedCancelHandler }
+      purchasedContinued={ this.purchasedContinueHandler }
+      price={ this.state.totalPrice.toFixed(2) }
+    />;
+
+    if (this.state.loading) orderSummary = <Spinner />;
+
     return (
       <Aux>
         <Modal
           show={ this.state.purchasing }
           modalClosed={ this.purchasedCancelHandler }
         >
-          <OrderSummary
-            ingredients={ this.state.ingredients }
-            purchaseCanceled={ this.purchasedCancelHandler }
-            purchasedContinued={ this.purchasedContinueHandler }
-            price={ this.state.totalPrice.toFixed(2) }
-          />
+          { orderSummary }
         </Modal>
         <Burger ingredients={ this.state.ingredients } />
         <BuildControls
