@@ -13,12 +13,12 @@ const button = (props) => (
 );
 
 button.propTypes = {
-  btnType: PropTypes.string,
-  clicked: PropTypes.func,
+  btnType: PropTypes.string.isRequired,
+  clicked: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ])
+  ]).isRequired
 };
 
 export default button;
