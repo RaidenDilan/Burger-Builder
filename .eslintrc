@@ -18,11 +18,11 @@
   },
   "extends": [
     "react-app",
-    "plugin:react/recommended"
-    # "plugin:jsx-a11y/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
   ],
   "plugins": [
-    # "jsx-a11y"
+    "jsx-a11y"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
@@ -63,6 +63,34 @@
   #   "With"
   # ],
   "rules": {
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/no-onchange": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off",
+    "jsx-a11y/no-static-element-interactions": ["warn", {
+      handlers: [
+        "onClick",
+        "onMouseDown",
+        "onMouseUp",
+        "onKeyPress",
+        "onKeyDown",
+        "onKeyUp",
+      ],
+    }],
+    "jsx-a11y/interactive-supports-focus": ["warn", {
+      tabbable: [
+        "button",
+        "checkbox",
+        "link",
+        "searchbox",
+        "spinbutton",
+        "switch",
+        "textbox",
+      ]
+    }],
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }],
+
     # "indent": [ "error", 2, {
     #   "SwitchCase": 1,
     #   "VariableDeclarator": 1,
@@ -112,12 +140,7 @@
     # "prefer-const": 1,
 
 
-    "jsx-a11y/href-no-hash": "off",
-    "jsx-a11y/no-onchange": "off",
-    "jsx-a11y/label-has-for": "off",
-    "jsx-a11y/anchor-is-valid": ["warn", {
-      "aspects": ["invalidHref"]
-    }],
+    "react/display-name": 0,
     # "react/prefer-es6-class": 0,
     # "react/jsx-space-before-closing": "error",
     # "react/jsx-indent": [ 1, 2 ],
@@ -144,6 +167,13 @@
     "react/prop-types": [ "warn" ],
     # "react/no-array-index-key": [ "warn" ],
     # "react/jsx-no-undef": [2, { "allowGlobals": true }],
+    "react/no-unescaped-entities": [ 0 ]
+    # "react/no-unescaped-entities": ["warn", {
+    #   "forbid": [{
+    #     char: "'",
+    #     alternatives: ['&apos;', '&lsquo;', '&#39;', '&rsquo;']
+    #   }]
+    # }]
   }
 }
 
