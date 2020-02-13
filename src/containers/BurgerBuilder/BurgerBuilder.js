@@ -5,6 +5,7 @@ import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import axios from '../../axios-orders';
 
 // Typpical global constants are written in ALL CAPS
 const INGREDIENT_PRICES = {
@@ -89,18 +90,40 @@ class BurgerBuilder extends Component {
   purchasedCancelHandler = () => {
     this.setState({ purchasing: false });
   };
+
   purchasedContinueHandler = () => {
-    alert('You continued');
+    // alert('You continued');
+    const order = {
+      ingredients: this.state.ingredients,
+      price: this.state.totalPrice,
+      customer: {
+        name: 'R. Dilan',
+        address: {
+          street: 'Test Street',
+          zipCode: 'SW1X 7TA',
+          country: 'United Kingdom'
+        },
+        email: 'test@test.com',
+      },
+      deliveryMthod: 'fastest'
+    };
+
+    axios
+      .post('/orders.json', order)
+      .then(response => console.log(response))
+      .catch(err => console.log(err));
   };
 
   render() {
     const disabledInfo = {
       ...this.state.ingredients
     };
+
     for (let key in disabledInfo) {
       disabledInfo[key] = disabledInfo[key] <= 0;
       // { salad: true, meat: false, ... }
     }
+
     return (
       <Aux>
         <Modal
