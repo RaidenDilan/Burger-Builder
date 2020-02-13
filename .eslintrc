@@ -17,19 +17,27 @@
     ]
   },
   "extends": [
+    "react-app",
     "plugin:react/recommended"
+    # "plugin:jsx-a11y/recommended",
+  ],
+  "plugins": [
+    # "jsx-a11y"
   ],
   "parser": "babel-eslint",
   "parserOptions": {
+    sourceType: "module",
+    allowImportExportEverywhere: false,
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
-      "jsx": true
+      "jsx": true,
+      "globalReturn": false
     },
-    "sourceType": "module"
   },
   "env": {
-    "browser": true,
-    "es6": true
+    browser: true,
+    es6: true,
+    node: true
   },
   # "globals": [
   #   "describe",
@@ -55,59 +63,117 @@
   #   "With"
   # ],
   "rules": {
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "indent": [ "error", 2, { "SwitchCase": 1, "VariableDeclarator": 1, "MemberExpression": 1}],
-    "react/jsx-indent": ["error", 2],
-    "react/jsx-indent-props": ["error", 2],
+    # "indent": [ "error", 2, {
+    #   "SwitchCase": 1,
+    #   "VariableDeclarator": 1,
+    #   "MemberExpression": 1,
+    # }],
     "linebreak-style": ["error", "unix"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
-
-    # "jsx-quotes": ["error", "prefer-double"],
-    # "space-in-parens": [ 0, "always" ],
-    # "template-curly-spacing": [ 2, "always" ],
-    # # "array-bracket-spacing": [ 2, "always" ],
-    # "object-curly-spacing": [ 2, "always" ],
-    # # "computed-property-spacing": [ 2, "always" ],
-    # "no-multiple-empty-lines": [ 2, { "max": 1, "maxEOF": 0, "maxBOF": 0 } ],
-    # # "quotes": [ 1, "single", "avoid-escape" ],
-    # # "no-use-before-define": [ 2, { "functions": false } ],
-    # # "semi": [0, "never"],
-    # # "prefer-const": 1,
-    # "react/prefer-es6-class": 0,
-    # "react/jsx-filename-extension": 0,
-    "react/jsx-curly-spacing": [ 2, { "when": "always", "attributes": { "allowMultiline": false }, "children": true }],
-    # "react/jsx-space-before-closing": "error",
-    "react/jsx-tag-spacing": ["warn", { "beforeSelfClosing": "always" }],
-    # "react/jsx-indent": [ 1, 2 ],
-    # # "react/jsx-max-props-per-line": [1, { "when": "always" }],
-    "react/prop-types": [ "warn" ],
-    # # "react/no-array-index-key": [ 1 ],
-    # 'class-methods-use-this': ['error', {
+    # "semi": [0, "never"],
+    # "class-methods-use-this": ["error", {
     #   exceptMethods: [
-    #     'render',
-    #     'getInitialState',
-    #     'getDefaultProps',
-    #     'getChildContext',
-    #     'componentWillMount',
-    #     'componentDidMount',
-    #     'componentWillReceiveProps',
-    #     'shouldComponentUpdate',
-    #     'componentWillUpdate',
-    #     'componentDidUpdate',
-    #     'componentWillUnmount',
+    #     "render",
+    #     "getInitialState",
+    #     "getDefaultProps",
+    #     "getChildContext",
+    #     "componentWillMount",
+    #     "componentDidMount",
+    #     "componentWillReceiveProps",
+    #     "shouldComponentUpdate",
+    #     "componentWillUpdate",
+    #     "componentDidUpdate",
+    #     "componentWillUnmount",
     #   ],
     # }],
     # "no-undef": ["error"],
-    # "react/jsx-no-undef": [2, { "allowGlobals": true }],
-    # "no-unused-vars": "on",
-    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
-    # "no-case-declarations": [ 1 ],
-    # "no-return-assign": [ 1 ],
-    # "no-param-reassign": [ 1 ],
-    # # "no-shadow": [ 1 ],
+    "no-unused-vars": ["warn", {
+      "vars": "all",
+      "args": "after-used",
+      "ignoreRestSiblings": false
+    }],
+    # "no-case-declarations": [ "warn" ],
+    # "no-return-assign": [ "warn" ],
+    # "no-param-reassign": [ "warn" ],
+    # "no-shadow": [ "warn" ],
     # "no-console": "off",
-    # "camelcase": [ 1 ],
+    # "camelcase": [ "warn" ],
     # "no-underscore-dangle": [0, "always"]
+    "jsx-quotes": ["error", "prefer-single"],
+    "space-in-parens": [ "warn", "never" ],
+    "template-curly-spacing": [ "warn", "always" ],
+    # "array-bracket-spacing": [ "warn", "always" ],
+    "object-curly-spacing": [ "warn", "always" ],
+    # "computed-property-spacing": [ "warn", "always" ],
+    # "no-multiple-empty-lines": [ 2, { "max": 1, "maxEOF": 0, "maxBOF": 0 } ],
+    # "quotes": [ 1, "single", "avoid-escape" ],
+    # "no-use-before-define": [ 2, { "functions": false } ],
+    # "prefer-const": 1,
+
+
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/no-onchange": "off",
+    "jsx-a11y/label-has-for": "off",
+    "jsx-a11y/anchor-is-valid": ["warn", {
+      "aspects": ["invalidHref"]
+    }],
+    # "react/prefer-es6-class": 0,
+    # "react/jsx-space-before-closing": "error",
+    # "react/jsx-indent": [ 1, 2 ],
+    "react/jsx-indent": ["error", 2],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "react/jsx-indent-props": ["error", 2],
+    "react/jsx-curly-spacing": [ "warn", {
+      "when": "always", "attributes": {
+        "allowMultiline": false
+      },
+      "children": true
+    }],
+    "react/jsx-tag-spacing": ["warn", {
+      "beforeSelfClosing": "always"
+    }],
+    # "react/jsx-closing-bracket-location": ["warn", {
+    #   selfClosing: "tag-aligned",
+    #   nonEmpty: "tag-aligned"
+    # }],
+    # "react/jsx-first-prop-new-line": [1, "multiline"],
+    # "react/jsx-max-props-per-line": [1, { "maximum": 1 }],
+    "react/jsx-first-prop-new-line": ["warn", "multiline"],
+    # "react/jsx-max-prop-per-line": ["warn", "multiline"],
+    "react/prop-types": [ "warn" ],
+    # "react/no-array-index-key": [ "warn" ],
+    # "react/jsx-no-undef": [2, { "allowGlobals": true }],
   }
 }
+
+# {
+#   "env": {
+#     "browser": true,
+#     "commonjs": true,
+#     "es6": true,
+#     "node": true
+#   },
+#   "extends": "eslint:recommended",
+#   "globals": {
+#     "angular": true,
+#     "$": true
+#   },
+#   "parserOptions": {
+#     "sourceType": "module"
+#   },
+#   "rules": {
+#     "brace-style": "error",
+#     "camelcase": ["error", { "properties": "never" }],
+#     "comma-dangle": ["error", "never"],
+#     "func-call-spacing": ["error", "never"],
+#     "eqeqeq": "warn",
+#     "indent": [ "error", 2, { "SwitchCase": 1 } ],
+#     "key-spacing": [ "error", { "beforeColon": false } ],
+#     "no-console": "off",
+#     "no-fallthrough": "warn",
+#     "prefer-const": "error",
+#     "quotes": [ "error", "single", { "allowTemplateLiterals": true } ],
+#     "semi": [ "error", "always" ]
+#   }
+# }
