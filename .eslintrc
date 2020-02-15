@@ -92,7 +92,7 @@
     "jsx-a11y/label-has-for": "off",
     "jsx-a11y/anchor-is-valid": ["warn", { "aspects": ["invalidHref"] }],
 
-    # "indent": [ "error", 2, {
+    # "indent": ["error", 2, {
     #   "SwitchCase": 1,
     #   "VariableDeclarator": 1,
     #   "MemberExpression": 1,
@@ -122,21 +122,21 @@
       "args": "after-used",
       "ignoreRestSiblings": false
     }],
-    # "no-case-declarations": [ "warn" ],
-    # "no-return-assign": [ "warn" ],
-    # "no-param-reassign": [ "warn" ],
-    # "no-shadow": [ "warn" ],
+    # "no-case-declarations": ["warn"],
+    # "no-return-assign": ["warn"],
+    # "no-param-reassign": ["warn"],
+    # "no-shadow": ["warn"],
     # "no-console": "off",
-    # "camelcase": [ "warn" ],
+    # "camelcase": ["warn"],
     # "no-underscore-dangle": [0, "always"]
     "jsx-quotes": ["error", "prefer-single"],
-    "space-in-parens": [ "warn", "never" ],
-    "template-curly-spacing": [ "warn", "always" ],
-    # "array-bracket-spacing": [ "warn", "always" ],
-    "object-curly-spacing": [ "warn", "always" ],
-    # "computed-property-spacing": [ "warn", "always" ],
+    "space-in-parens": ["warn", "never"],
+    "template-curly-spacing": ["warn", "always"],
+    # "array-bracket-spacing": ["warn", "always"],
+    "object-curly-spacing": ["warn", "always"],
+    # "computed-property-spacing": ["warn", "always"],
     # "no-multiple-empty-lines": [ 2, { "max": 1, "maxEOF": 0, "maxBOF": 0 } ],
-    # "quotes": [ 1, "single", "avoid-escape" ],
+    # "quotes": [ 1, "single", "avoid-escape"],
     # "no-use-before-define": [ 2, { "functions": false } ],
     # "prefer-const": 1,
 
@@ -148,7 +148,7 @@
     "react/jsx-indent": ["error", 2],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/jsx-indent-props": ["error", 2],
-    "react/jsx-curly-spacing": [ "warn", {
+    "react/jsx-curly-spacing": ["warn", {
       "when": "always", "attributes": {
         "allowMultiline": false
       },
@@ -165,8 +165,8 @@
     # "react/jsx-max-props-per-line": [1, { "maximum": 1 }],
     "react/jsx-first-prop-new-line": ["warn", "multiline"],
     # "react/jsx-max-prop-per-line": ["warn", "multiline"],
-    "react/prop-types": [ "warn" ],
-    # "react/no-array-index-key": [ "warn" ],
+    "react/prop-types": ["off"],
+    # "react/no-array-index-key": ["warn"],
     # "react/jsx-no-undef": [2, { "allowGlobals": true }],
     "react/no-unescaped-entities": [ 0 ]
     # "react/no-unescaped-entities": ["warn", {
@@ -199,12 +199,12 @@
 #     "comma-dangle": ["error", "never"],
 #     "func-call-spacing": ["error", "never"],
 #     "eqeqeq": "warn",
-#     "indent": [ "error", 2, { "SwitchCase": 1 } ],
-#     "key-spacing": [ "error", { "beforeColon": false } ],
+#     "indent": ["error", 2, { "SwitchCase": 1 } ],
+#     "key-spacing": ["error", { "beforeColon": false } ],
 #     "no-console": "off",
 #     "no-fallthrough": "warn",
 #     "prefer-const": "error",
-#     "quotes": [ "error", "single", { "allowTemplateLiterals": true } ],
-#     "semi": [ "error", "always" ]
+#     "quotes": ["error", "single", { "allowTemplateLiterals": true } ],
+#     "semi": ["error", "always"]
 #   }
 # }

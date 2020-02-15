@@ -35,12 +35,12 @@ const burgerControls = (props) => (
 );
 
 burgerControls.propTypes = {
-  price: PropTypes.number.isRequired,
-  ordered: PropTypes.func.isRequired,
-  disabled: PropTypes.object.isRequired,
-  purchasable: PropTypes.bool.isRequired,
-  ingredientAdded: PropTypes.func.isRequired,
-  ingredientRemoved: PropTypes.func.isRequired,
+  price: PropTypes.number,
+  ordered: PropTypes.func,
+  disabled: PropTypes.object,
+  purchasable: PropTypes.bool,
+  ingredientAdded: PropTypes.func,
+  ingredientRemoved: PropTypes.func
 };
 
 export default burgerControls;

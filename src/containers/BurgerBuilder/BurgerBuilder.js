@@ -37,10 +37,10 @@ class BurgerBuilder extends Component {
   componentDidMount () {
     axios
       .get('https://react-my-burger-93215.firebaseio.com/ingredients.json')
-      .then(response => {
+      .then((response) => {
         this.setState({ ingredients: response.data });
       })
-      .catch(error => {
+      .catch(() => {
         // console.log(error);
         this.setState({ error: true });
       });
@@ -125,11 +125,11 @@ class BurgerBuilder extends Component {
 
     axios
       .post('/orders.json', order)
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.setState({ loading: false, purchasing: false });
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({ loading: false, purchasing: false });
         console.log(err);
       });
