@@ -34,7 +34,9 @@ class BurgerBuilder extends Component {
   };
 
 
-  componentDidMount () {
+  componentDidMount() {
+    console.log('[BurgerBuilder.js] componentDidMount => ', this.props);
+
     axios
       .get('https://react-my-burger-93215.firebaseio.com/ingredients.json')
       .then((response) => {
@@ -106,33 +108,36 @@ class BurgerBuilder extends Component {
 
   purchasedContinueHandler = () => {
     // alert('You continued');
-    this.setState({ loading: true });
 
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: 'R. Dilan',
-        address: {
-          street: 'Test Street',
-          zipCode: 'SW1X 7TA',
-          country: 'United Kingdom'
-        },
-        email: 'test@test.com',
-      },
-      deliveryMthod: 'fastest'
-    };
+    this.props.history.push('/checkout');
 
-    axios
-      .post('/orders.json', order)
-      .then((response) => {
-        console.log(response);
-        this.setState({ loading: false, purchasing: false });
-      })
-      .catch((err) => {
-        this.setState({ loading: false, purchasing: false });
-        console.log(err);
-      });
+    // this.setState({ loading: true });
+    //
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   price: this.state.totalPrice,
+    //   customer: {
+    //     name: 'R. Dilan',
+    //     address: {
+    //       street: 'Test Street',
+    //       zipCode: 'SW1X 7TA',
+    //       country: 'United Kingdom'
+    //     },
+    //     email: 'test@test.com',
+    //   },
+    //   deliveryMthod: 'fastest'
+    // };
+    //
+    // axios
+    //   .post('/orders.json', order)
+    //   .then((response) => {
+    //     console.log(response);
+    //     this.setState({ loading: false, purchasing: false });
+    //   })
+    //   .catch((err) => {
+    //     this.setState({ loading: false, purchasing: false });
+    //     console.log(err);
+    //   });
   };
 
   render() {
