@@ -15,12 +15,12 @@ const navigationItem = (props) => (
 );
 
 navigationItem.propTypes = {
-  link: PropTypes.string.isRequired,
+  link: PropTypes.string,
   active: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ]).isRequired
+  ])
 };
 
 export default navigationItem;

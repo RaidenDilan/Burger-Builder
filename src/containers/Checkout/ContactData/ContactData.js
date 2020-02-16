@@ -38,14 +38,14 @@ class ContactData extends Component {
 
     axios
       .post('/orders.json', order)
-      .then((response) => {
-        console.log(response);
+      .then(res => {
+        // console.log(res);
         this.setState({ loading: false });
         this.props.history.push('/');
       })
-      .catch((error) => {
+      .catch(err => {
         this.setState({ loading: false });
-        console.log(error);
+        // console.log(err);
       });
   }
 
