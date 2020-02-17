@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import axios from '../../axios-orders';
-import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 import Order from '../../components/Order/Order';
+import axios from '../../axios-orders';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 class Orders extends Component {
   state = {
@@ -11,24 +11,32 @@ class Orders extends Component {
   }
 
   componentDidMount() {
+    // console.log('[Orders.js] componentDidMount ===>', this.props.orders);
     // axios.get('/orders') // ENABLE: To test Orders component withErrorHandler(WrappedComponent)
-    axios.get('/orders.json')
+    axios
+      .get('/orders.json')
       .then(res => {
-        console.log(res);
+        // console.log('[Orders.js] componentDidMount res =>', res.data);
+        const fetchedOrders = [];
 
-        // helper function
-        const fetchOrders = [];
         for (let key in res.data) {
-          // fetchOrders.push(res.data[key]); // THIS: is fine but we can also...
+          // fetchedOrders.push(res.data[key]); // THIS: is fine but we can also...
 
-          // Push a new Object on this fetchOrders array,
+          // Push a new Object on this fetchedOrders array,
           // where we distribute the proeprties of the orders Object we fetch from FireBase (which is a spread operator)
           // And add one new property of 'id' which is the 'key' => '-M0AiWYyBcnpQGaBn3US'.
-          fetchOrders.push({ ...res.data[key], id: key });
-          this.setState({ loaded: false, orders: fetchOrders });
+
+          // Then we render our component we will essentially be using <Order key={ order.id } /> instead of FireBase 'id' - '-M0AiWYyBcnpQGaBn3US'
+          fetchedOrders.push({
+            ...res.data[key],
+            id: key
+          });
         }
+
+        this.setState({ loading: false, orders: fetchedOrders });
       })
       .catch(err => {
+        console.log('[Orders.js] componentDidMount err =>', err);
         this.setState({ loading: false });
       });
   }
@@ -36,8 +44,12 @@ class Orders extends Component {
   render() {
     return (
       <div>
-        <Order />
-        <Order />
+        { this.state.orders.map(order => (
+          <Order
+            key={ order.id }
+            ingredients={ order.ingredients }
+            price={ order.price } />
+          )) }
       </div>
     );
   }

@@ -23,7 +23,7 @@ class ContactData extends Component {
 
     const order = {
       ingredients: this.props.ingredients, // from props
-      price: this.props.totalPrice, // from props
+      price: this.props.price, // from props
       customer: {
         name: 'R. Dilan',
         address: {
@@ -39,13 +39,13 @@ class ContactData extends Component {
     axios
       .post('/orders.json', order)
       .then(res => {
-        // console.log(res);
+        console.log('[ContactData.js] orderhandler => res', res);
         this.setState({ loading: false });
         this.props.history.push('/');
       })
       .catch(err => {
         this.setState({ loading: false });
-        // console.log(err);
+        console.log('[ContactData.js] orderhandler => err', err);
       });
   }
 

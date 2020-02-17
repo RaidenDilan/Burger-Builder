@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import Aux from '../../../hoc/Aux/Aux';
 import Button from '../../UI/Button/Button';
@@ -16,7 +16,9 @@ class OrderSummary extends Component {
       .map(igKey => {
         return (
           <li key={ igKey }>
-            <span style={ { textTransform: 'capitalize' } }>{ igKey }</span>: { this.props.ingredients[igKey] }
+            <span style={ { textTransform: 'capitalize' } }>
+              { igKey }
+            </span>: { this.props.ingredients[igKey] }
           </li>
         );
       });
@@ -48,11 +50,11 @@ class OrderSummary extends Component {
 };
 
 
-OrderSummary.propTypes = {
-  price: PropTypes.string,
-  ingredients: PropTypes.object,
-  purchaseCanceled: PropTypes.func,
-  purchasedContinued: PropTypes.func
-};
+// OrderSummary.propTypes = {
+//   price: PropTypes.string,
+//   ingredients: PropTypes.object,
+//   purchaseCanceled: PropTypes.func,
+//   purchasedContinued: PropTypes.func
+// };
 
 export default OrderSummary;

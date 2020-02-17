@@ -23,7 +23,6 @@ class BurgerBuilder extends Component {
   //   super(props);
   //   this.state = {...}
   // }
-
   state = {
     ingredients: null,
     totalPrice: 4,
@@ -33,17 +32,16 @@ class BurgerBuilder extends Component {
     error: null
   };
 
-
   componentDidMount() {
     console.log('[BurgerBuilder.js] componentDidMount => ', this.props);
 
     axios
       .get('https://react-my-burger-93215.firebaseio.com/ingredients.json')
-      .then((response) => {
-        this.setState({ ingredients: response.data });
+      .then((res) => {
+        this.setState({ ingredients: res.data });
       })
-      .catch((error) => {
-        // console.log(error);
+      .catch((err) => {
+        console.log('[BurgerBuilder.js] componentDidMount err => ', err);
         this.setState({ error: true });
       });
   }
@@ -58,10 +56,6 @@ class BurgerBuilder extends Component {
       }, 0);
 
     this.setState({ purchasable: sum > 0 });
-  };
-
-  purchaseHandler = () => {
-    this.setState({ purchasing: true });
   };
 
   addIngredientHandler = (type) => {
@@ -80,6 +74,10 @@ class BurgerBuilder extends Component {
 
     this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
     this.updatePurchaseState(updatedIngredients); // Call updatePurchaseState() to update our property purchasable: true
+  };
+
+  purchaseHandler = () => {
+    this.setState({ purchasing: true });
   };
 
   removeIngredientHandler = (type) => {
@@ -122,7 +120,7 @@ class BurgerBuilder extends Component {
       pathname: '/checkout',
       search: '?' + queryString
     });
-  };
+  }
 
   render() {
     const disabledInfo = {
@@ -164,8 +162,7 @@ class BurgerBuilder extends Component {
       <Aux>
         <Modal
           show={ this.state.purchasing }
-          modalClosed={ this.purchasedCancelHandler }
-        >
+          modalClosed={ this.purchasedCancelHandler }>
           { orderSummary }
         </Modal>
         { burger }

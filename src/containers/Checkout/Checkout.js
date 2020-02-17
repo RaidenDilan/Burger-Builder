@@ -18,10 +18,11 @@ class Checkout extends Component {
 
     for (let param of query.entries()) {
       // [ 'salad': '1' ]
+      console.log('paramparam ---------------------------------', param);
       if (param[0] === 'price') price = param[1];
       else ingredients[param[0]] = +param[1];
-      this.setState({ ingredients: ingredients, totalPrice: price });
     }
+    this.setState({ ingredients: ingredients, totalPrice: price });
   }
 
   checkoutCancelledHandler = () => {
@@ -47,7 +48,7 @@ class Checkout extends Component {
               ingredients={ this.state.ingredients }
               price={ this.state.totalPrice }
               { ...props } />
-          ) } />
+            ) } />
       </div>
     );
   }
