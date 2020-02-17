@@ -51,10 +51,12 @@ class ContactData extends Component {
       },
       deliveryMethod: {
         elementType: 'select',
-        options: [
-          { value: 'fastest', displayValue: 'Fastest' },
-          { value: 'cheapest', displayValue: 'Cheapest' }
-        ],
+        elementConfig: {
+          options: [
+            { value: 'fastest', displayValue: 'Fastest' },
+            { value: 'cheapest', displayValue: 'Cheapest' }
+          ]
+        },
         value: ''
       },
     },
@@ -84,37 +86,32 @@ class ContactData extends Component {
       });
   }
 
+  inputChangedHandler = (event) => {
+    const updatedKeyword = event.target.value;
+    console.log('updatedKeyword', updatedKeyword);
+    // May be call for search result
+  }
+
   render () {
+    const formElementArray = [];
+    // Loop through our Array of JS Objects
+    for (let key in this.state.orderForm) {
+      formElementArray.push({
+        id: key,
+        config: this.state.orderForm[key]
+      });
+    }
+
     let form = (
       <form>
-        <Input
-          // elementType='...'
-          // elementConfig='...'
-          // value='...'
-          type='text'
-          name='name'
-          placeholder='Your Name...' />
-        <Input
-          // elementType='...'
-          // elementConfig='...'
-          // value='...'
-          type='email'
-          name='email'
-          placeholder='Your Email...' />
-        <Input
-          // elementType='...'
-          // elementConfig='...'
-          // value='...'
-          type='text'
-          name='street'
-          placeholder='Your Street...' />
-        <Input
-          // elementType='...'
-          // elementConfig='...'
-          // value='...'
-          type='text'
-          name='postal'
-          placeholder='Your Postal Code...' />
+        { formElementArray.map(formElement => (
+          <Input
+            key={ formElement.id }
+            elementType={ formElement.config.elementType }
+            elementConfig={ formElement.config.elementConfig }
+            value={ formElement.config.value }
+            onChange={ (event) => this.inputChangedHandler(event) } />
+        )) }
         <Button btnType='Success' clicked={ this.orderhandler }>ORDER</Button>
       </form>
     );
