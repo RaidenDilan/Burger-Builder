@@ -19,6 +19,7 @@ class Checkout extends Component {
     for (let param of query.entries()) {
       // [ 'salad': '1' ]
       console.log('paramparam ---------------------------------', param);
+      
       if (param[0] === 'price') price = param[1];
       else ingredients[param[0]] = +param[1];
     }
@@ -40,7 +41,6 @@ class Checkout extends Component {
           ingredients={ this.state.ingredients }
           checkoutCancelled={ this.checkoutCancelledHandler }
           checkoutContinued={ this.checkoutContinuedHandler } />
-
         <Route
           path={ this.props.match.path + '/contact-data' }
           render={ (props) => (

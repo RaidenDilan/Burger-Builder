@@ -17,8 +17,8 @@ const input = (props) => {
       inputElement = <input
         className={ classes.InputElement }
         { ...props.elementConfig }
-        onChange={ props.changed }
-        value={ props.value } />;
+        value={ props.value }
+        onChange={ props.changed } />;
       break;
     case('select'):
       inputElement = (
@@ -38,8 +38,8 @@ const input = (props) => {
       inputElement = <input
         className={ classes.InputElement }
         { ...props.elementConfig }
-        onChange={ props.changed }
-        value={ props.value } />;
+        value={ props.value }
+        onChange={ props.changed } />;
   }
   return (
     <div className={ classes.Input }>
