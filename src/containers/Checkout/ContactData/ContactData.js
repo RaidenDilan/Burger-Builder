@@ -89,7 +89,8 @@ class ContactData extends Component {
             { value: 'cheapest', displayValue: 'Cheapest' }
           ]
         },
-        value: '',
+        value: '', // SHOULD: not be an empty string as this will cause a bug. But for now we will keep it empty.
+        // value: 'fastest',
         validation: {},
         valid: true
       }
