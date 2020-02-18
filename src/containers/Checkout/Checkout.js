@@ -17,9 +17,6 @@ class Checkout extends Component {
     let price = 0;
 
     for (let param of query.entries()) {
-      // [ 'salad': '1' ]
-      console.log('paramparam ---------------------------------', param);
-      
       if (param[0] === 'price') price = param[1];
       else ingredients[param[0]] = +param[1];
     }

@@ -6,7 +6,7 @@ const input = (props) => {
   let inputElement = null;
   const inputClasses = [classes.InputElement];
 
-  if (props.invalid && props.shouldValidate) inputClasses.push(classes.Invalid);
+  if (props.invalid && props.shouldValidate && props.touched) inputClasses.push(classes.Invalid);
 
   switch(props.elementType) {
     case('input'):
@@ -32,7 +32,9 @@ const input = (props) => {
           { props.elementConfig.options.map(option => ( // returns JSX
             <option
               key={ option.value }
-              value={ option.value }>{ option.displayValue }</option>
+              value={ option.value }>
+              { option.displayValue }
+            </option>
           )) }
         </select>
       );

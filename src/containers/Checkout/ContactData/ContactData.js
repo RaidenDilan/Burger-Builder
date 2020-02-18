@@ -19,7 +19,8 @@ class ContactData extends Component {
         validation: {
           required: true
         },
-        valid: false
+        valid: false,
+        touched: false
       },
       street: {
         elementType: 'input',
@@ -31,7 +32,8 @@ class ContactData extends Component {
         validation: {
           required: true
         },
-        valid: false
+        valid: false,
+        touched: false
       },
       zipCode: {
         elementType: 'input',
@@ -45,7 +47,8 @@ class ContactData extends Component {
           minLength: 5,
           maxLength: 5
         },
-        valid: false
+        valid: false,
+        touched: false
       },
       country: {
         elementType: 'input',
@@ -57,7 +60,8 @@ class ContactData extends Component {
         validation: {
           required: true
         },
-        valid: false
+        valid: false,
+        touched: false
       },
       email: {
         elementType: 'input',
@@ -69,7 +73,8 @@ class ContactData extends Component {
         validation: {
           required: true
         },
-        valid: false
+        valid: false,
+        touched: false
       },
       deliveryMethod: {
         elementType: 'select',
@@ -79,7 +84,10 @@ class ContactData extends Component {
             { value: 'cheapest', displayValue: 'Cheapest' }
           ]
         },
-        value: ''
+        value: '',
+        validation: {},
+        valid: true,
+        // touched: false
       }
     },
     loading: false
@@ -97,9 +105,7 @@ class ContactData extends Component {
 
   orderhandler = (event) => {
     event.preventDefault();
-    // console.log('[ContactData.js] orderhandler =>', this.props);
     this.setState({ loading: true });
-
     const formData = {};
 
     for (let formElementIdentifier in this.state.orderForm) {
@@ -112,19 +118,16 @@ class ContactData extends Component {
       orderData: formData
     };
 
-    // console.log('formData ------>>>', formData);
-    // console.log('order ------>>>', order);
-
     axios
       .post('/orders.json', order)
       .then(res => {
-        console.log('[ContactData.js] orderhandler => res', res);
+        // console.log('[ContactData.js] orderhandler => res', res);
         this.setState({ loading: false });
         this.props.history.push('/');
       })
       .catch(err => {
         this.setState({ loading: false });
-        console.log('[ContactData.js] orderhandler => err', err);
+        // console.log('[ContactData.js] orderhandler => err', err);
       });
   }
 
@@ -138,10 +141,9 @@ class ContactData extends Component {
 
     updatedFormElement.value = event.target.value;
     updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
+    updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
-
-    console.log(updatedFormElement);
-
+    console.log('updatedFormElement', updatedFormElement);
     this.setState({ orderForm: updatedOrderForm });
   }
 
@@ -165,6 +167,7 @@ class ContactData extends Component {
             value={ formElement.config.value }
             invalid={ !formElement.config.valid }
             shouldValidate={ formElement.config.validation }
+            touched={ formElement.config.touched }
             changed={ (event) => this.inputChangedHandler(event, formElement.id) } />
         )) }
         <Button btnType='Success'>ORDER</Button>
@@ -183,4 +186,3 @@ class ContactData extends Component {
 }
 
 export default ContactData;
-// export default withRouter(ContactData);
