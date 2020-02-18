@@ -18,6 +18,7 @@ class ContactData extends Component {
         value: '',
         validation: {
           required: true
+          // message: 'Please enter a valid Name'
         },
         valid: false,
         touched: false
@@ -31,6 +32,7 @@ class ContactData extends Component {
         value: '',
         validation: {
           required: true
+          // message: 'Please enter a valid Street'
         },
         valid: false,
         touched: false
@@ -46,6 +48,7 @@ class ContactData extends Component {
           required: true,
           minLength: 5,
           maxLength: 5
+          // message: 'Please enter a valid Zip Code'
         },
         valid: false,
         touched: false
@@ -59,6 +62,7 @@ class ContactData extends Component {
         value: '',
         validation: {
           required: true
+          // message: 'Please enter a valid Country'
         },
         valid: false,
         touched: false
@@ -72,6 +76,7 @@ class ContactData extends Component {
         value: '',
         validation: {
           required: true
+          // message: 'Please enter a valid Email'
         },
         valid: false,
         touched: false
@@ -86,8 +91,7 @@ class ContactData extends Component {
         },
         value: '',
         validation: {},
-        valid: true,
-        // touched: false
+        valid: true
       }
     },
     loading: false
@@ -143,7 +147,9 @@ class ContactData extends Component {
     updatedFormElement.valid = this.checkValidity(updatedFormElement.value, updatedFormElement.validation);
     updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
+
     console.log('updatedFormElement', updatedFormElement);
+
     this.setState({ orderForm: updatedOrderForm });
   }
 
