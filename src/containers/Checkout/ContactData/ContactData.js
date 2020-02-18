@@ -127,13 +127,13 @@ class ContactData extends Component {
     axios
       .post('/orders.json', order)
       .then(res => {
-        // console.log('[ContactData.js] orderhandler => res', res);
+        console.log('[ContactData.js] orderhandler => res', res);
         this.setState({ loading: false });
         this.props.history.push('/');
       })
       .catch(err => {
         this.setState({ loading: false });
-        // console.log('[ContactData.js] orderhandler => err', err);
+        console.log('[ContactData.js] orderhandler => err', err);
       });
   }
 
