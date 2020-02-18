@@ -48,7 +48,6 @@ const input = (props) => {
   }
 
   let validationError = null;
-  console.log(props);
   if (props.invalid && props.touched) validationError = <p className={ classes.ValidationError }>Please enter a valid { props.elementConfig.placeholder }</p>;
   // if (props.invalid && props.touched) validationError = <p className={ classes.ValidationError }>{ props.errorMessage }</p>;
 
