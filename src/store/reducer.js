@@ -11,7 +11,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  switch(action) {
+  switch(action.type) {
     case actionsTypes.ADD_INGREDIENT:
       return {
         ...state, // ALWAYS CREATE A NEW OBJECT IN AN IMMUTABLE WAY.
