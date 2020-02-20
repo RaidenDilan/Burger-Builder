@@ -11,17 +11,8 @@ import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actionsTypes from '../../store/actions';
 
-// Typpical global constants are written in ALL CAPS
-const INGREDIENT_PRICES = {
-  salad: 0.5,
-  cheese: 0.4,
-  meat: 1.3,
-  bacon: 0.7
-};
-
 class BurgerBuilder extends Component {
   state = {
-    totalPrice: 4,
     purchasable: false,
     purchasing: false,
     loading: false,
@@ -53,46 +44,8 @@ class BurgerBuilder extends Component {
     this.setState({ purchasable: sum > 0 });
   };
 
-  addIngredientHandler = (type) => {
-    const oldCOunt = this.state.ingredients[type];
-    const updatedCount = oldCOunt + 1;
-    const updatedIngredients = {
-      // State should be updated in an unmutable way
-      // Then use the spread opertar to distribute the properties of the old ingredients state into the new object we are creatng bellow.
-      ...this.state.ingredients
-    };
-
-    updatedIngredients[type] = updatedCount;
-    const priceAddition = INGREDIENT_PRICES[type];
-    const oldPrice = this.state.totalPrice;
-    const newPrice = oldPrice + priceAddition;
-
-    this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
-    this.updatePurchaseState(updatedIngredients); // Call updatePurchaseState() to update our property purchasable: true
-  };
-
   purchaseHandler = () => {
     this.setState({ purchasing: true });
-  };
-
-  removeIngredientHandler = (type) => {
-    const oldCOunt = this.state.ingredients[type];
-
-    if (oldCOunt <= 0) return; // return nothing if oldCOunt is equal to or less than 0.
-    const updatedCount = oldCOunt - 1;
-    const updatedIngredients = {
-      // State should be updated in an unmutable way
-      // Then use the spread opertar to distribute the properties of the old ingredients state into the new object we are creatng bellow.
-      ...this.state.ingredients
-    };
-
-    updatedIngredients[type] = updatedCount;
-    const priceDeduction = INGREDIENT_PRICES[type];
-    const oldPrice = this.state.totalPrice;
-    const newPrice = oldPrice - priceDeduction;
-
-    this.setState({ totalPrice: newPrice, ingredients: updatedIngredients });
-    this.updatePurchaseState(updatedIngredients); // Call updatePurchaseState() to update our property purchasable: true
   };
 
   purchasedCancelHandler = () => {
@@ -139,7 +92,7 @@ class BurgerBuilder extends Component {
             disabled={ disabledInfo }
             purchasable={ this.state.purchasable }
             ordered={ this.purchaseHandler }
-            price={ this.state.totalPrice }
+            price={ this.props.price }
         />
         </Aux>
       );
@@ -147,7 +100,7 @@ class BurgerBuilder extends Component {
         ingredients={ this.props.ings }
         purchaseCanceled={ this.purchasedCancelHandler }
         purchasedContinued={ this.purchasedContinueHandler }
-        price={ this.state.totalPrice.toFixed(2) }
+        price={ this.props.price.toFixed(2) }
       />;
     }
 
@@ -168,7 +121,8 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients
+    ings: state.ingredients,
+    price: state.totalPrice
   };
 };
 
