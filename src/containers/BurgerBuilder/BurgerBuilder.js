@@ -12,8 +12,11 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actionsTypes from '../../store/actions';
 
 class BurgerBuilder extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {...}
+  // }
   state = {
-    purchasable: false,
     purchasing: false,
     loading: false,
     error: null
@@ -41,7 +44,8 @@ class BurgerBuilder extends Component {
         return sum + el;
       }, 0);
 
-    this.setState({ purchasable: sum > 0 });
+    // this.setState({ purchasable: sum > 0 }); // APPROACH: => Manage the purchasable state prop with Redux
+    return sum > 0; // APPROACH: => Manage the purchasable state prop with React
   };
 
   purchaseHandler = () => {
@@ -90,7 +94,7 @@ class BurgerBuilder extends Component {
             ingredientAdded={ this.props.onIngredientAdded }
             ingredientRemoved={ this.props.onIngredientRemoved }
             disabled={ disabledInfo }
-            purchasable={ this.state.purchasable }
+            purchasable={ this.updatePurchaseState(this.props.ings) }
             ordered={ this.purchaseHandler }
             price={ this.props.price }
         />
