@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import classes from './SideDrawer.css';
 import Logo from '../../Logo/Logo';
@@ -18,8 +17,7 @@ const sideDrawer = (props) => { // We are return something => {}
     <Aux>
       <Backdrop
         show={ props.open }
-        clicked={ props.closed }
-      />
+        clicked={ props.closed } />
       <div className={ attachedClasses.join(' ') }>
         <div className={ classes.Logo }>
           <Logo />
@@ -30,11 +28,6 @@ const sideDrawer = (props) => { // We are return something => {}
       </div>
     </Aux>
   );
-};
-
-sideDrawer.propTypes = {
-  open: PropTypes.bool.isRequired,
-  closed: PropTypes.func.isRequired,
 };
 
 export default sideDrawer;

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
 
 import Aux from '../../../hoc/Aux/Aux';
 import Button from '../../UI/Button/Button';
@@ -30,31 +29,21 @@ class OrderSummary extends Component {
         <ul>
           { ingredientSummary }
         </ul>
-        <p><strong>Total Price: { this.props.price }</strong></p>
+        <p><strong>Total Price: { this.props.price.toFixed(2) }</strong></p>
         <p>Continue to Checkout?</p>
         <Button
           clicked={ this.props.purchaseCanceled }
-          btnType='Danger'
-        >
+          btnType='Danger'>
           CANCEL
         </Button>
         <Button
           clicked={ this.props.purchasedContinued }
-          btnType='Success'
-        >
+          btnType='Success'>
           CONTINUE
         </Button>
       </Aux>
     );
   }
 };
-
-
-// OrderSummary.propTypes = {
-//   price: PropTypes.string,
-//   ingredients: PropTypes.object,
-//   purchaseCanceled: PropTypes.func,
-//   purchasedContinued: PropTypes.func
-// };
 
 export default OrderSummary;

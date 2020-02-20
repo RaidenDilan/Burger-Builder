@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-// import PropTypes from 'prop-types';
 
 import classes from './NavigationItem.css';
 
@@ -12,14 +11,5 @@ const navigationItem = (props) => (
       activeClassName={ classes.active }>{ props.children }</NavLink>
   </li>
 );
-
-// navigationItem.propTypes = {
-//   link: PropTypes.string,
-//   active: PropTypes.bool,
-//   children: PropTypes.oneOfType([
-//     PropTypes.arrayOf(PropTypes.node),
-//     PropTypes.node
-//   ])
-// };
 
 export default navigationItem;

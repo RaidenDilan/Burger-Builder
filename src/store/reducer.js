@@ -1,4 +1,4 @@
-import * as actionsTypes from './actions';
+import * as actionTypes from './actions';
 
 const initialState = {
   ingredients: {
@@ -20,7 +20,7 @@ const INGREDIENT_PRICES = {
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {
-    case actionsTypes.ADD_INGREDIENT:
+    case actionTypes.ADD_INGREDIENT:
       return {
         ...state, // ALWAYS CREATE A NEW OBJECT IN AN IMMUTABLE WAY.
         ingredients: {
@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
         },
         totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]
       };
-    case actionsTypes.REMOVE_INGREDIENT:
+    case actionTypes.REMOVE_INGREDIENT:
       return {
         ...state, // ALWAYS CREATE A NEW OBJECT IN AN IMMUTABLE WAY.
         ingredients: {
