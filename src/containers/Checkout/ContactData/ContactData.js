@@ -94,8 +94,7 @@ class ContactData extends Component {
             { value: 'cheapest', displayValue: 'Cheapest' }
           ]
         },
-        value: '', // SHOULD: not be an empty string as this will cause a bug. But for now we will keep it empty.
-        // value: 'fastest',
+        value: 'fastest',
         validation: {},
         valid: true
       }
@@ -203,9 +202,9 @@ class ContactData extends Component {
 
 const mapStateToProps = state => {
   return {
-    ings: state.ingredients,
-    price: state.totalPrice,
-    loading: state.loading
+    ings: state.burgerBuilder.ingredients,
+    price: state.burgerBuilder.totalPrice,
+    loading: state.order.loading
   };
 };
 

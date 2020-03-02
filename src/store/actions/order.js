@@ -24,12 +24,12 @@ export const purchaseBurgerStart = () => {
 
 export const purchaseBurger = (orderData) => {
   return dispatch => {
-    purchaseBurgerStart(); // To dispatch our function before the post request.
+    dispatch(purchaseBurgerStart()); // To dispatch our function before the post request.
     axios
       .post('/orders.json', orderData)
       .then(res => {
         console.log('[order.js] action => res', res.data);
-        dispatch(purchaseBurgerSuccess(res.data, orderData));
+        dispatch(purchaseBurgerSuccess(res.data.name, orderData));
       })
       .catch(err => {
         console.log('[order.js] action => err', err);
