@@ -22,8 +22,8 @@ class BurgerBuilder extends Component {
     error: null
   };
 
-  // componentDidMount() {
-  //   console.log('[BurgerBuilder.js] componentDidMount => ', this.props);
+  componentDidMount() {
+    console.log('[BurgerBuilder.js] componentDidMount => ', this.props);
   //   // axios
   //   //   .get('https://react-my-burger-93215.firebaseio.com/ingredients.json')
   //   //   .then(res => {
@@ -33,7 +33,7 @@ class BurgerBuilder extends Component {
   //   //     console.log('[BurgerBuilder.js] componentDidMount err => ', err);
   //   //     this.setState({ error: true });
   //   //   });
-  // }
+  }
 
   updatePurchaseState(ingredients) {
     const sum = Object.keys(ingredients)
