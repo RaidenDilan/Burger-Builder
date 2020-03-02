@@ -2,7 +2,6 @@ config
 scripts
 public
 
-src/index.js
 src/registerServiceWorker.js
 
 archive
