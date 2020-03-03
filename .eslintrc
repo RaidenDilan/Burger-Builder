@@ -98,8 +98,8 @@
     #   "MemberExpression": 1,
     # }],
     "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
+    "quotes": ["warn", "single"],
+    "semi": ["warn", "always"],
     # "semi": [0, "never"],
     # "class-methods-use-this": ["error", {
     #   exceptMethods: [
