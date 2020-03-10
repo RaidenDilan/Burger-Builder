@@ -11,7 +11,7 @@ class Auth extends Component {
         elementType: 'input',
         elementConfig: {
           type: 'email',
-          placeholder: 'Your Email'
+          placeholder: 'Email Address'
         },
         value: '',
         validation: {
@@ -25,7 +25,7 @@ class Auth extends Component {
         elementType: 'input',
         elementConfig: {
           type: 'password',
-          placeholder: 'Enter Password'
+          placeholder: 'Password'
         },
         value: '',
         validation: {
@@ -60,7 +60,6 @@ class Auth extends Component {
   inputChangedHandler = (event, controlName) => {
     const updatedControls = {
       ...this.state.controls,
-      // Manually getting only the name control
       [controlName]: {
         ...this.state.controls[controlName],
         value: event.target.value,
