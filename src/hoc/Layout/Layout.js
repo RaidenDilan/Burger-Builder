@@ -1,7 +1,6 @@
 // For now we want to keep this Component in the higher order component (hoc) folder because it therer to wrap other components
-
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import Aux from '../Aux/Aux';
 import classes from './Layout.css';
@@ -26,8 +25,11 @@ class Layout extends Component {
   render () {
     return (
       <Aux>
-        <Toolbar drawerToggleClicked={ this.sideDrawerToggledHandler } />
+        <Toolbar
+          isAuth={ this.props.isAuthenticated }
+          drawerToggleClicked={ this.sideDrawerToggledHandler } />
         <SideDrawer
+          isAuth={ this.props.isAuthenticated }
           open={ this.state.showSideDrawer }
           closed={ this.sideDrawerClosedhandler }
         />
@@ -39,15 +41,10 @@ class Layout extends Component {
   }
 };
 
-Layout.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ])
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.auth.token != null
+  };
 };
 
-// Layout.propTypes = {
-//   children: PropTypes.node.isRequired,
-// };
-
-export default Layout;
+export default connect(mapStateToProps)(Layout);
