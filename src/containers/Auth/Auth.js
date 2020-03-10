@@ -75,7 +75,11 @@ class Auth extends Component {
 
   submitHandler = (event) => {
     event.preventDefault(); // prevent reloading of the page
-    this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
+    this.props.onAuth(
+      this.state.controls.email.value,
+      this.state.controls.password.value,
+      this.state.isSignup
+    );
   };
 
   switchAuthModeHandler = () => {
