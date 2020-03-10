@@ -119,7 +119,7 @@
     # "no-undef": ["error"],
     "no-unused-vars": ["warn", {
       "vars": "all",
-      "args": "after-used",
+      "args": "none", # options => "after-used" || "none"
       "ignoreRestSiblings": false
     }],
     # "no-case-declarations": ["warn"],
