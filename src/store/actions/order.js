@@ -22,11 +22,11 @@ export const purchaseBurgerStart = () => {
   };
 };
 
-export const purchaseBurger = (orderData) => {
+export const purchaseBurger = (orderData, token) => {
   return dispatch => {
     dispatch(purchaseBurgerStart()); // To dispatch our function before the post request.
     axios
-      .post('/orders.json', orderData)
+      .post('/orders.json?auth=' + token, orderData)
       .then(res => {
         // console.log('[order.js] action => res', res.data);
         dispatch(purchaseBurgerSuccess(res.data.name, orderData));
@@ -66,12 +66,12 @@ export const fetchOrdersStart = () => {
 };
 
 // async code
-export const fetchOrders = () => {
+export const fetchOrders = (token) => {
   // RETURN A FUNCTION WHICH GETS DISPATCHED FIRST
   return dispatch => {
     dispatch(fetchOrdersStart());
     axios
-      .get('/orders.json')
+      .get('/orders.json?auth=' + token)
       .then(res => {
         const fetchedOrders = [];
         for (let key in res.data) {
