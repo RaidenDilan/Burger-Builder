@@ -27,14 +27,8 @@ export const purchaseBurger = (orderData, token) => {
     dispatch(purchaseBurgerStart()); // To dispatch our function before the post request.
     axios
       .post('/orders.json?auth=' + token, orderData)
-      .then(res => {
-        // console.log('[order.js] action => res', res.data);
-        dispatch(purchaseBurgerSuccess(res.data.name, orderData));
-      })
-      .catch(err => {
-        // console.log('[order.js] action => err', err);
-        dispatch(purchaseBurgerFail(err));
-      });
+      .then(res => dispatch(purchaseBurgerSuccess(res.data.name, orderData)))
+      .catch(err => dispatch(purchaseBurgerFail(err)));
   };
 };
 
@@ -65,8 +59,8 @@ export const fetchOrdersStart = () => {
   };
 };
 
-// async code
 export const fetchOrders = (token, userId) => {
+  // ASYNCHRONOUS CODE
   // RETURN A FUNCTION WHICH GETS DISPATCHED FIRST
   return dispatch => {
     dispatch(fetchOrdersStart());
@@ -76,7 +70,6 @@ export const fetchOrders = (token, userId) => {
       .then(res => {
         const fetchedOrders = [];
         for (let key in res.data) {
-          // console.log('key', key);
           // fetchedOrders.push(res.data[key]); // THIS: is fine but we can also...
           // Push a new Object on this fetchedOrders array,
           // where we distribute the proeprties of the orders Object we fetch from FireBase (which is a spread operator)
@@ -89,9 +82,6 @@ export const fetchOrders = (token, userId) => {
         }
         dispatch(fetchOrdersSuccess(fetchedOrders));
       })
-      .catch(error => {
-        // console.log('[Orders.js] componentDidMount error =>', error);
-        dispatch(fetchOrdersFail(error));
-      });
+      .catch(error => dispatch(fetchOrdersFail(error)));
   };
 };

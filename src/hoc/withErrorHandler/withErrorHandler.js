@@ -6,7 +6,6 @@ import Aux from '../Aux/Aux';
 const withErrorHandler = (WrappedComponent, axios) => {
   return class extends Component {
     // displayName: 'withErrorHandler' // to fix ESlint syntax error
-
     constructor(props) {
       super(props);
       this.reqInterceptor = axios.interceptors.request.use(req => {
@@ -20,24 +19,13 @@ const withErrorHandler = (WrappedComponent, axios) => {
       error: null
     }
 
-    /* DEPRECTATED - Use constructor */
-    // componentDidMount () {
-    //   axios.interceptors.request.use(req => {
-    //     this.setState({ error: null });
-    //     return req;
-    //   });
-    //   axios.interceptors.response.use(res => res, error => this.setState({ error: error }));
-    // }
-
     componentWillUnmount () {
-      // console.log('[withErrorHandler.js] componentWillUnmount', this.reqInterceptor, this.resInterceptor);
       axios.interceptors.request.eject(this.reqInterceptor);
       axios.interceptors.response.eject(this.resInterceptor);
     }
 
     errorConfirmedHandler = () => {
       this.setState({ error: null });
-      console.log('[withErrorHandler.js] errorConfirmedHandler');
     }
 
     render () {

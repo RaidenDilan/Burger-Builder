@@ -5,7 +5,6 @@ import Button from '../../UI/Button/Button';
 import classes from './CheckoutSummary.css';
 
 const checkoutSummary = (props) => {
-  // console.log('checkoutSummary', props);
   return (
     <div className={ classes.CheckoutSummary }>
       <h1>We hope it tastes delicious!</h1>
