@@ -1,9 +1,5 @@
-// import React from 'react';
 import reducer from './auth';
 import * as actionTypes from '../actions/actionTypes';
-
-// import { BurgerBuilder } from './BurgerBuilder';
-// import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 
 describe('auth reducer', () => {
   it('should return the initial state', () => {
