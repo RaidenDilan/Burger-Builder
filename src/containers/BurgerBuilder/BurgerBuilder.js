@@ -11,7 +11,10 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 import axios from '../../axios-orders';
 
-class BurgerBuilder extends Component {
+// Adding export to the BurgerBuilder class.
+// This will give a named export in this file.
+// Now BurgerBuilder can be used to test.
+export class BurgerBuilder extends Component {
   state = {
     purchasing: false
   };
