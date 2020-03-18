@@ -113,7 +113,7 @@ class ContactData extends Component {
 
     const order = {
       ingredients: this.props.ings,
-      price: this.props.price,
+      price: this.props.price.toFixed(2),
       orderData: formData,
       userId: this.props.userId // passes logged in userId to order to fetch user orders later
     };
