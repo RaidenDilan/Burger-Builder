@@ -142,7 +142,7 @@
     # "prefer-const": 1,
 
 
-    "react/display-name": 0,
+    # "react/display-name": 0,
     # "react/prefer-es6-class": 0,
     # "react/jsx-space-before-closing": "error",
     # "react/jsx-indent": [ 1, 2 ],
