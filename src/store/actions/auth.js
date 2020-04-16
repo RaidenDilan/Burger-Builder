@@ -56,19 +56,8 @@ export const setAuthRedirectPath = (path) => {
   };
 };
 
-// A pure utility action creator
 export const authCheckState = () => {
-  return dispatch => {
-    const token = localStorage.getItem('token');
-    if (!token) dispatch(logout());
-    else {
-      const expirationDate = new Date(localStorage.getItem('expirationDate')); // convert expirationDate from a String into a new Date Object.
-      if (expirationDate < new Date()) dispatch(logout());
-      else {
-        const userId = localStorage.getItem('userId');
-        dispatch(authSuccess(token, userId));
-        dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000)); // expiration seconds left.
-      }
-    }
+  return {
+    type: actionTypes.AUTH_CHECK_STATE
   };
 };
