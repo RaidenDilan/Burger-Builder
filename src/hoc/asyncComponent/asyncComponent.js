@@ -2,16 +2,12 @@ import React, { Component } from 'react';
 
 const asyncComponent = (importComponent) => {
   return class extends Component {
-    displayName: 'withErrorHandler' // to fix ESlint syntax error
     state = {
       Component: null
     }
 
     componentDidMount() {
-      importComponent()
-      .then(cmp => {
-        this.setState({ component: cmp.default });
-      });
+      importComponent().then(cmp => this.setState({ component: cmp.default }));
     }
 
     render() {
@@ -20,7 +16,5 @@ const asyncComponent = (importComponent) => {
     }
   };
 };
-
-// asyncComponent.displayName = 'asyncComponent';
 
 export default asyncComponent;

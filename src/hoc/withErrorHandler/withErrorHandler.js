@@ -5,18 +5,19 @@ import Aux from '../Aux/Aux';
 
 const withErrorHandler = (WrappedComponent, axios) => {
   return class extends Component {
-    displayName: 'withErrorHandler' // to fix ESlint syntax error
     constructor(props) {
       super(props);
+
+      this.state = {
+        error: null
+      };
+
       this.reqInterceptor = axios.interceptors.request.use(req => {
         this.setState({ error: null });
         return req;
       });
-      this.resInterceptor = axios.interceptors.response.use(res => res, error => this.setState({ error: error }));
-    }
 
-    state = {
-      error: null
+      this.resInterceptor = axios.interceptors.response.use(res => res, error => this.setState({ error: error }));
     }
 
     componentWillUnmount () {
@@ -33,8 +34,7 @@ const withErrorHandler = (WrappedComponent, axios) => {
         <Aux>
           <Modal
             show={ this.state.error }
-            modalClosed={ this.errorConfirmedHandler }
-          >
+            modalClosed={ this.errorConfirmedHandler }>
             { this.state.error ? this.state.error.message : null }
           </Modal>
           <WrappedComponent { ...this.props } />
