@@ -28,10 +28,16 @@ export const logout = () => {
   };
 };
 
+export const logoutSucceed = () => {
+  return {
+    types: actionTypes.AUTH_LOGOUT
+  };
+};
+
 export const checkAuthTimeout = (expirationTime) => {
-  // run ASYNC code
-  return dispatch => {
-    setTimeout(() => dispatch(logout()), expirationTime * 1000);
+  return {
+    type: actionTypes.AUTH_CHECK_TIMEOUT,
+    expirationTime: expirationTime
   };
 };
 
