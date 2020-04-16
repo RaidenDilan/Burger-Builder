@@ -1,4 +1,3 @@
-// SYNCHRONOUS ACTION CREATORS
 import * as actionTypes from './actionTypes';
 
 export const addIngredient = (name) => {
@@ -29,7 +28,6 @@ export const fetchIngredientsFailed = () => {
 };
 
 export const initIngredients = () => {
-  // return a function where we recieve the dispatch function where we can use in this function body.
   return {
     type: actionTypes.INIT_INGREDIENTS
   };
