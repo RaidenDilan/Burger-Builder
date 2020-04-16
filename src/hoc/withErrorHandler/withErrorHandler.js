@@ -5,7 +5,7 @@ import Aux from '../Aux/Aux';
 
 const withErrorHandler = (WrappedComponent, axios) => {
   return class extends Component {
-    // displayName: 'withErrorHandler' // to fix ESlint syntax error
+    displayName: 'withErrorHandler' // to fix ESlint syntax error
     constructor(props) {
       super(props);
       this.reqInterceptor = axios.interceptors.request.use(req => {
