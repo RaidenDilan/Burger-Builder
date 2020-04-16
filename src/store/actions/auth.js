@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes';
-import axios from 'axios';
 
 export const authStart = () => {
   return {
@@ -30,7 +29,7 @@ export const logout = () => {
 
 export const logoutSucceed = () => {
   return {
-    types: actionTypes.AUTH_LOGOUT
+    type: actionTypes.AUTH_LOGOUT
   };
 };
 
@@ -42,31 +41,11 @@ export const checkAuthTimeout = (expirationTime) => {
 };
 
 export const auth = (email, password, isSignup) => {
-  return dispatch => {
-    dispatch(authStart());
-
-    const authData = {
-      email: email,
-      password: password,
-      returnSecureToken: true
-    };
-
-    let url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${ process.env.FIREBASE_ENV }`;
-    if (!isSignup) url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${ process.env.FIREBASE_ENV }`;
-
-    axios
-      .post(url, authData)
-      .then(res => {
-        const expirationDate = new Date(new Date().getTime() + res.data.expiresIn * 1000);
-        localStorage.setItem('token', res.data.idToken);
-        localStorage.setItem('expirationDate', expirationDate);
-        localStorage.setItem('userId', res.data.localId);
-        dispatch(authSuccess(res.data.idToken, res.data.localId));
-        dispatch(checkAuthTimeout(res.data.expiresIn));
-      })
-      .catch(err => {
-        dispatch(authFail(err.response.data.error));
-      });
+  return {
+    type: actionTypes.AUTH_USER,
+    email: email,
+    password: password,
+    isSignup: isSignup
   };
 };
 
