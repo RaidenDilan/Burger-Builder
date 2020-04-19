@@ -18,21 +18,21 @@ const layout = (props) => {
     setSideDrawerIsVisible(!sideDrawerIsVisible);
   };
 
-    return (
-      <Aux>
-        <Toolbar
-          isAuth={ props.isAuthenticated }
-          drawerToggleClicked={ sideDrawerToggledHandler } />
-        <SideDrawer
-          isAuth={ props.isAuthenticated }
-          open={ sideDrawerIsVisible }
-          closed={ sideDrawerClosedhandler }
-        />
-        <main className={ classes.Content }>
-          { props.children }
-        </main>
-      </Aux>
-    );
+  return (
+    <Aux>
+      <Toolbar
+        isAuth={ props.isAuthenticated }
+        drawerToggleClicked={ sideDrawerToggledHandler } />
+      <SideDrawer
+        isAuth={ props.isAuthenticated }
+        open={ sideDrawerIsVisible }
+        closed={ sideDrawerClosedhandler }
+      />
+      <main className={ classes.Content }>
+        { props.children }
+      </main>
+    </Aux>
+  );
 };
 
 const mapStateToProps = state => {

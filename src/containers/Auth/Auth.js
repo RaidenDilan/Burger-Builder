@@ -100,9 +100,11 @@ class Auth extends Component {
 
     let errorMessage = null;
 
-    if (this.props.error) errorMessage = (
-      <p>{ this.props.error.message }</p>
-    );
+    if (this.props.error) {
+      console.log('this.props', this.props);
+      errorMessage = (<p>{ this.props.error.message }</p>);
+      console.log('errorMessage', errorMessage);
+    }
 
     let authRedirect = null;
 
